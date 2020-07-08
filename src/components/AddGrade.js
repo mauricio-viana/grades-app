@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import GradeDataService from '../services/GradeService';
+import ListSubHeader from './ListSubHeader';
+import Message from './Message';
+import { fieldValidation } from '../Helpers/fieldValidation';
 
 const AddGrade = () => {
   const initialGradeState = {
@@ -11,6 +14,7 @@ const AddGrade = () => {
   };
   const [grade, setGrade] = useState(initialGradeState);
   const [submitted, setSubmitted] = useState(false);
+  const [message, setMessage] = useState('');
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -18,22 +22,30 @@ const AddGrade = () => {
   };
 
   const saveGrade = () => {
-    var data = {
+    const data = {
       name: grade.name,
       subject: grade.subject,
       type: grade.type,
       value: grade.value,
     };
 
+    const fieldsError = fieldValidation(data);
+
+    if (fieldsError.length > 0) {
+      setMessage(`Required fields: [ ${fieldsError.join([', '])} ]`);
+      return;
+    }
+
     GradeDataService.create(data)
       .then((response) => {
         setGrade({
           id: response.data.id,
           name: response.data.name,
-          subject: response.data.img,
+          subject: response.data.subject,
           type: response.data.type,
           value: response.data.value,
         });
+        setMessage('You submitted successfully!');
         setSubmitted(true);
       })
       .catch((e) => {
@@ -42,31 +54,34 @@ const AddGrade = () => {
   };
 
   const newGrade = () => {
+    setMessage('');
     setGrade(initialGradeState);
     setSubmitted(false);
   };
 
   return (
-    <div className="submit-form">
+    <main role="main" className="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+      <ListSubHeader titleHeader="Add new grade" visibleFieldSearch={false} />
+
       {submitted ? (
-        <div>
-          <h4>You submitted successfully!</h4>
-          <button className="btn btn-success" onClick={newGrade}>
-            Add
-          </button>
-        </div>
+        <Message
+          message={message}
+          labelButton="Add"
+          onClickRedirect={newGrade}
+        />
       ) : (
-        <div>
+        <div className="container" style={{ width: '50%' }}>
           <div className="form-group">
             <label htmlFor="name">Name</label>
+            <span></span>
             <input
               type="text"
               className="form-control"
               id="name"
-              required
               value={grade.name}
               onChange={handleInputChange}
               name="name"
+              formNoValidate
             />
           </div>
 
@@ -76,7 +91,6 @@ const AddGrade = () => {
               type="text"
               className="form-control"
               id="subject"
-              required
               value={grade.subject}
               onChange={handleInputChange}
               name="subject"
@@ -88,7 +102,6 @@ const AddGrade = () => {
               type="text"
               className="form-control"
               id="type"
-              required
               value={grade.type}
               onChange={handleInputChange}
               name="type"
@@ -100,7 +113,6 @@ const AddGrade = () => {
               type="Number"
               className="form-control"
               id="value"
-              required
               value={grade.value}
               onChange={handleInputChange}
               name="value"
@@ -109,9 +121,10 @@ const AddGrade = () => {
           <button onClick={saveGrade} className="btn btn-success">
             Submit
           </button>
+          <p style={{ color: 'red', marginTop: '16px' }}> {message} </p>
         </div>
       )}
-    </div>
+    </main>
   );
 };
 

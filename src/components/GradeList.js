@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import GradeDataService from '../services/GradeService';
-import { Link } from 'react-router-dom';
+
+import ListSubHeader from './ListSubHeader';
+import ViewGrade from './ViewGrade';
 
 const GradeList = () => {
   const [grade, setGrade] = useState([]);
@@ -12,9 +14,8 @@ const GradeList = () => {
     retrieveGrade();
   }, []);
 
-  const onChangeSearchName = (e) => {
-    const searchName = e.target.value;
-    setSearchName(searchName);
+  const handleChangeSearchName = (newName) => {
+    setSearchName(newName);
   };
 
   const retrieveGrade = () => {
@@ -59,93 +60,52 @@ const GradeList = () => {
   };
 
   return (
-    <div className="list row">
-      <div className="col-md-8">
-        <div className="input-group mb-3">
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Search by name"
-            value={searchName}
-            onChange={onChangeSearchName}
-          />
-          <div className="input-group-append">
-            <button
-              className="btn btn-outline-secondary"
-              type="button"
-              onClick={findByName}
-            >
-              Search
-            </button>
-          </div>
+    <main role="main" className="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+      <ListSubHeader
+        titleHeader="Grades"
+        visibleFieldSearch={true}
+        valueSearchName={searchName}
+        onClickSearch={findByName}
+        onChangeSearchName={handleChangeSearchName}
+      />
+
+      <div className="row">
+        <div className="col-md-6">
+          <h4>Grade List</h4>
+          <ul className="list-group">
+            {grade &&
+              grade.map((grade, index) => (
+                <li
+                  className={
+                    'list-group-item ' +
+                    (index === currentIndex ? 'active' : '')
+                  }
+                  onClick={() => setActiveGrade(grade, index)}
+                  key={index}
+                >
+                  {grade.name}
+                </li>
+              ))}
+          </ul>
+          <button
+            className="m-3 btn btn-sm btn-danger"
+            onClick={removeAllGrade}
+          >
+            Remove All
+          </button>
+        </div>
+        <div className="col-md-6">
+          {currentGrade ? (
+            <ViewGrade grade={currentGrade} />
+          ) : (
+            <div>
+              <br />
+              <p>Please click on a Grade...</p>
+            </div>
+          )}
         </div>
       </div>
-      <div className="col-md-6">
-        <h4>Grade List</h4>
-
-        <button className="m-3 btn btn-sm btn-danger" onClick={removeAllGrade}>
-          Remove All
-        </button>
-
-        <ul className="list-group">
-          {grade &&
-            grade.map((grade, index) => (
-              <li
-                className={
-                  'list-group-item ' + (index === currentIndex ? 'active' : '')
-                }
-                onClick={() => setActiveGrade(grade, index)}
-                key={index}
-              >
-                {grade.name}
-              </li>
-            ))}
-        </ul>
-      </div>
-      <div className="col-md-6">
-        {currentGrade ? (
-          <div>
-            <h4>Grade</h4>
-            <div>
-              <label>
-                <strong>Name:</strong>
-              </label>{' '}
-              {currentGrade.name}
-            </div>
-            <div>
-              <label>
-                <strong>Subject:</strong>
-              </label>{' '}
-              {currentGrade.subject}
-            </div>
-            <div>
-              <label>
-                <strong>Type:</strong>
-              </label>{' '}
-              {currentGrade.type}
-            </div>
-            <div>
-              <label>
-                <strong>Value:</strong>
-              </label>{' '}
-              {currentGrade.value}
-            </div>
-
-            <Link
-              to={'/grade/' + currentGrade._id}
-              className="badge badge-warning"
-            >
-              Edit
-            </Link>
-          </div>
-        ) : (
-          <div>
-            <br />
-            <p>Please click on a Grade...</p>
-          </div>
-        )}
-      </div>
-    </div>
+    </main>
   );
 };
 
