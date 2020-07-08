@@ -11,33 +11,46 @@ function App() {
   return (
     <Router>
       <div>
-        <nav className="navbar navbar-expand navbar-dark bg-dark">
-          <a href="/grade" className="navbar-brand">
-            Aplicativo
+        <nav className="navbar navbar-dark sticky-top bg-dark shadow">
+          <a href="/grade" className="navbar-brand col-md-3 col-lg-2">
+            App
           </a>
-          <div className="navbar-nav mr-auto">
-            <li className="nav-item">
-              <Link to={'/grade'} className="nav-link">
-                Grades
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to={'/add'} className="nav-link">
-                Add
-              </Link>
-            </li>
-          </div>
         </nav>
-        <div className="container mt-3">
-          <Switch>
-            <Route exact path={['/', '/grade']} component={GradeList} />
-            <Route exact path="/add" component={AddGrade} />
-            <Route path="/grade/:id" component={Grade} />
-          </Switch>
+
+        <div className="container-fluid">
+          <div className="row">
+            <nav
+              className="col-md-3 col-lg-2 d-md-block bg-light position-fixed"
+              style={styles.navBar}
+            >
+              <ul className="nav flex-column mt-4">
+                <li className="nav-item">
+                  <Link to={'/grade'} className="nav-link">
+                    Grades
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to={'/add'} className="nav-link">
+                    Add
+                  </Link>
+                </li>
+              </ul>
+            </nav>
+
+            <Switch>
+              <Route exact path={['/', '/grade']} component={GradeList} />
+              <Route exact path="/add" component={AddGrade} />
+              <Route path="/grade/:id" component={Grade} />
+            </Switch>
+          </div>
         </div>
       </div>
     </Router>
   );
 }
+
+const styles = {
+  navBar: { height: '100%', borderRight: '1px solid lightgray' },
+};
 
 export default App;
