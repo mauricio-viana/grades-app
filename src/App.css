@@ -44,3 +44,8 @@
   padding: 26px;
   margin: auto;
 }
+
+.ul-grade-list {
+  overflow-x: auto;
+  height: 650px;
+}

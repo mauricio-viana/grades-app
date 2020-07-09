@@ -3,6 +3,7 @@ import GradeDataService from '../services/GradeService';
 
 import ListSubHeader from './ListSubHeader';
 import ViewGrade from './ViewGrade';
+import SearchName from './SearchName';
 
 const GradeList = () => {
   const [grade, setGrade] = useState([]);
@@ -41,7 +42,7 @@ const GradeList = () => {
 
   const removeAllGrade = () => {
     GradeDataService.removeAll()
-      .then((response) => {
+      .then((_) => {
         refreshList();
       })
       .catch((e) => {
@@ -60,19 +61,17 @@ const GradeList = () => {
   };
 
   return (
-    <main role="main" className="col-md-9 ml-sm-auto col-lg-10 px-md-4">
-      <ListSubHeader
-        titleHeader="Grades"
-        visibleFieldSearch={true}
-        valueSearchName={searchName}
-        onClickSearch={findByName}
-        onChangeSearchName={handleChangeSearchName}
-      />
+    <main className="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+      <ListSubHeader titleHeader="Grades" />
 
       <div className="row">
         <div className="col-md-6">
-          <h4>Grade List</h4>
-          <ul className="list-group">
+          <SearchName
+            valueSearchName={searchName}
+            onClickSearch={findByName}
+            onChangeSearchName={handleChangeSearchName}
+          />
+          <ul className="list-group list-group-flush ul-grade-list border">
             {grade &&
               grade.map((grade, index) => (
                 <li
@@ -99,7 +98,7 @@ const GradeList = () => {
           {currentGrade ? (
             <ViewGrade grade={currentGrade} />
           ) : (
-            <div>
+            <div className="mt-4">
               <br />
               <p>Please click on a Grade...</p>
             </div>
