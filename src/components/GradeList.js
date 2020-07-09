@@ -88,10 +88,11 @@ const GradeList = () => {
               ))}
           </ul>
           <button
-            className="m-3 btn btn-sm btn-danger"
+            className="m-3 btn btn-danger align-icon"
             onClick={removeAllGrade}
           >
-            Remove All
+            <i className="material-icons">delete_forever</i>
+            <strong className="mr-2 ml-2">Remove All</strong>
           </button>
         </div>
         <div className="col-md-6">

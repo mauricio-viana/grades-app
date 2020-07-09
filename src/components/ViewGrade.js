@@ -31,8 +31,13 @@ export default function EditGrade({ grade }) {
         {value}
       </div>
 
-      <Link to={'/grade/' + _id} className="btn btn-warning">
-        Edit
+      <Link
+        to={'/grade/' + _id}
+        className="btn btn-warning align-icon"
+        style={{ width: '98px' }}
+      >
+        <i className="material-icons">create</i>
+        <strong className="ml-2">Edit</strong>
       </Link>
     </div>
   );

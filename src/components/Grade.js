@@ -80,7 +80,7 @@ const Grade = (props) => {
             onClickRedirect={redirectGrades}
           />
         ) : (
-          <div className="container" style={{ width: '50%' }}>
+          <div className="edit-form">
             <div className="form-group ">
               <label htmlFor="name">Name</label>
               <input
@@ -125,19 +125,26 @@ const Grade = (props) => {
                 onChange={handleInputChange}
               />
             </div>
+            <div className="div-button">
+              <button
+                className="btn btn-danger align-icon mr-4"
+                onClick={deleteGrade}
+              >
+                <i className="material-icons">delete</i>
+                <span className="mr-2 ml-2">Delete</span>
+              </button>
 
-            <button className="btn btn-danger mr-4" onClick={deleteGrade}>
-              Delete
-            </button>
+              <button
+                type="submit"
+                className="btn btn-success align-icon"
+                onClick={updateGrade}
+              >
+                <i className="material-icons">update</i>
+                <span className="mr-2 ml-2">Update</span>
+              </button>
+            </div>
 
-            <button
-              type="submit"
-              className="btn btn-success"
-              onClick={updateGrade}
-            >
-              Update
-            </button>
-            <p style={{ color: 'red', marginTop: '16px' }}> {message} </p>
+            <p className="error-message"> {message} </p>
           </div>
         )
       ) : (

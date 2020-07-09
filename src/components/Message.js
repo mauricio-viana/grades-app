@@ -6,10 +6,14 @@ export default function Message({ message, labelButton, onClickRedirect }) {
   };
 
   return (
-    <div className="container">
+    <div className="content-message">
       <h4>{message}</h4>
-      <button className="btn btn-success" onClick={handleClickRedirect}>
-        {labelButton}
+      <button
+        className="btn btn-success align-icon mt-4"
+        onClick={handleClickRedirect}
+      >
+        <i className="material-icons">cached</i>
+        <strong className="mr-2 ml-2">{labelButton}</strong>
       </button>
     </div>
   );

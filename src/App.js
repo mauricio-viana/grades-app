@@ -12,26 +12,25 @@ function App() {
     <Router>
       <div>
         <nav className="navbar navbar-dark sticky-top bg-dark shadow">
-          <a href="/grade" className="navbar-brand col-md-3 col-lg-2">
+          <a href="/grade" className="navbar-brand col-md-3">
             App
           </a>
         </nav>
 
         <div className="container-fluid">
           <div className="row">
-            <nav
-              className="col-md-3 col-lg-2 d-md-block bg-light position-fixed"
-              style={styles.navBar}
-            >
-              <ul className="nav flex-column mt-4">
+            <nav className="col-md-3 col-lg-2 bg-light position-fixed style-navbar">
+              <ul className="nav flex-column mt-4 ">
                 <li className="nav-item">
-                  <Link to={'/grade'} className="nav-link">
-                    Grades
+                  <Link to={'/grade'} className="nav-link align-icon">
+                    <i className="material-icons">home</i>
+                    <span className="ml-2">Grades</span>
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link to={'/add'} className="nav-link">
-                    Add
+                  <Link to={'/add'} className="nav-link align-icon">
+                    <i className="material-icons">note_add</i>
+                    <span className="ml-2">Add</span>
                   </Link>
                 </li>
               </ul>
@@ -48,9 +47,5 @@ function App() {
     </Router>
   );
 }
-
-const styles = {
-  navBar: { height: '100%', borderRight: '1px solid lightgray' },
-};
 
 export default App;

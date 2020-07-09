@@ -33,11 +33,12 @@ export default function ListSubHeader(props) {
             />
             <div className="input-group-append">
               <button
-                className="btn btn-outline-secondary"
+                className="btn btn-outline-secondary align-icon"
                 type="button"
                 onClick={handleClickSearch}
               >
-                Search
+                <i className="material-icons">search</i>
+                <strong className="mr-2 ml-2">Search</strong>
               </button>
             </div>
           </div>

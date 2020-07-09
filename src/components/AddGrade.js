@@ -70,7 +70,7 @@ const AddGrade = () => {
           onClickRedirect={newGrade}
         />
       ) : (
-        <div className="container" style={{ width: '50%' }}>
+        <div className="submit-form">
           <div className="form-group">
             <label htmlFor="name">Name</label>
             <span></span>
@@ -118,10 +118,11 @@ const AddGrade = () => {
               name="value"
             />
           </div>
-          <button onClick={saveGrade} className="btn btn-success">
-            Submit
+          <button onClick={saveGrade} className="btn btn-success align-icon">
+            <i className="material-icons">add</i>
+            <strong className="mr-2 ml-2">Submit</strong>
           </button>
-          <p style={{ color: 'red', marginTop: '16px' }}> {message} </p>
+          <p className="error-message"> {message} </p>
         </div>
       )}
     </main>
