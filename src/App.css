@@ -49,3 +49,9 @@
   overflow-x: auto;
   height: 650px;
 }
+
+@media (max-height: 768px) {
+  .ul-grade-list {
+    height: 400px;
+  }
+}
