@@ -7,7 +7,21 @@ Repositório origem: [brunoaugustoteixeira/grades-api](https://github.com/brunoa
 **Desafio:**
 Praticar os conceitos de versionamento de código e implantação da aplicação pelo Heroku.
 
-![](https://i.imgur.com/N1jsb65.png)
+## Modicações no projeto inicial
+
+- Criados novos componentes para facilitar manutenção.
+- Validação de campos para incluir e editar nota.
+- Adicionada mensagem de feedback ao usuário nos processos de incluir, editar e excluir.
+- Adicionado subtítulo para identificar o processo ativo.
+- Adicionados ícones para ser mais atrativo ao usuário.
+
+## 📷 Screenshot
+
+![](https://i.imgur.com/OCvxE1S.png)
+
+![](https://i.imgur.com/MQeYon9.png)
+
+![](https://i.imgur.com/h1ZOfaN.png)
 
 Quer saber mais sobre os módulos da formação? acesse o meu repositório completo, em: [bootcamp-fullstack](https://github.com/mauricio-viana/bootcamp-fullstack) 👈
 
@@ -17,3 +31,4 @@ Quer saber mais sobre os módulos da formação? acesse o meu repositório compl
 - [Node](https://nodejs.org/en/about/)
 - [ReactJs](https://reactjs.org/)
 - [Heroku](https://www.heroku.com)
+- [Bootstrap](https://getbootstrap.com/)
