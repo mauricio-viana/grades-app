@@ -6,7 +6,7 @@ export default function Message({ message, labelButton, onClickRedirect }) {
   };
 
   return (
-    <div className="content-message">
+    <div className="content-message shadow p-3 mb-5 bg-white rounded">
       <h4>{message}</h4>
       <button
         className="btn btn-success align-icon mt-4"
