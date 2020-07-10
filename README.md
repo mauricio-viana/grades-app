@@ -2,7 +2,7 @@
 
 Aplicação desenvolvida com a biblioteca React, com objetivo de controlar as notas dos estudantes. Frontend inicial disponibilizado por Bruno Augusto Texeira, responsável por ministar o módulo 4 - Persistência de dados, versionamento de código e implantação, no curso [bootcamp online - desenvolvedor fullstack](https://www.igti.com.br/custom/bootcamp-desenvolvedor-full-stack/).
 
-Repositório origem: [brunoaugustoteixeira/grades-api](https://github.com/brunoaugustoteixeira)
+Repositório origem: [brunoaugustoteixeira/grades-app](https://github.com/brunoaugustoteixeira/grades-app)
 
 **Desafio:**
 Praticar os conceitos de versionamento de código e implantação da aplicação pelo Heroku.
